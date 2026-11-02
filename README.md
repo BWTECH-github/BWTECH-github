@@ -52,17 +52,6 @@ Hinter **BW.Tech** stehen Menschen, die zuhören, ehrlich beraten und gemeinsam 
 
 <br>
 
-## Projekte
-
-<p align="center">
-  <a href="https://github.com/BWTECH-github/owncloud.online"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-owncloud.online-dark.svg"><img src="assets/project-owncloud.online-light.svg" width="49%" alt="owncloud.online – Server und Plattform"></picture></a>
-  <a href="https://github.com/BWTECH-github/client"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-client-dark.svg"><img src="assets/project-client-light.svg" width="49%" alt="Desktop-Client"></picture></a>
-  <a href="https://github.com/BWTECH-github/Android"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-Android-dark.svg"><img src="assets/project-Android-light.svg" width="49%" alt="Android-App"></picture></a>
-  <a href="https://github.com/BWTECH-github/IOS-App"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-IOS-App-dark.svg"><img src="assets/project-IOS-App-light.svg" width="49%" alt="iOS-App"></picture></a>
-</p>
-
-<br>
-
 ## Technologien
 
 <p align="center">
