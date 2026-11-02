@@ -76,7 +76,7 @@ THEMES = {
         bg0='#ffffff', bg1=LAVENDER_PALE,
         glow=LAVENDER, glow_op=0.75,
         stroke0='#d6c4f2', stroke1='#ebe2f8',
-        dots=VIOLET, dots_op=0.22,
+        dots=VIOLET, dots_op=0.30,
         tile0=LAVENDER_LIGHT, tile1='#e6daf8', tile_stroke='#ffffff', tile_stroke_op=0.9,
         icon=PURPLE,
         title=PURPLE, body='#463a59', link=VIOLET,
@@ -87,12 +87,12 @@ THEMES = {
         bg0=PURPLE_DEEP, bg1='#1a0b26',
         glow=VIOLET, glow_op=0.30,
         stroke0='#4a2a68', stroke1='#2c1640',
-        dots=LAVENDER, dots_op=0.14,
+        dots=LAVENDER, dots_op=0.20,
         tile0='#3a1659', tile1='#2a0d42', tile_stroke=LAVENDER, tile_stroke_op=0.12,
         icon=LAVENDER,
         title=LAVENDER_LIGHT, body='#cdbbe9', link='#a78bfa',
         accent='#a78bfa', rule='#341b4b',
-        sheen=LAVENDER, sheen_op=0.10,
+        sheen='#b99cff', sheen_op=0.11,
     ),
 }
 
@@ -112,27 +112,48 @@ def f(v: float) -> str:
 
 # ---------------------------------------------------------------- Zeilenumbruch
 
-def _tokens(text: str) -> list[str]:
-    """Wörter an Leerzeichen; Gedankenstrich bleibt am vorigen Wort (Umbruch erst danach)."""
-    out: list[str] = []
+def _tokens(text: str) -> list[tuple[str, str]]:
+    """Trennstellen als (Stück, Trenner danach).
+
+    - an Leerzeichen (Trenner ' ')
+    - nach einem vorhandenen Bindestrich in Komposita mit mindestens 4 Buchstaben davor
+      („Desaster-|Recovery“, nicht „IT-|Umgebung“ oder „Backup-,“) – Trenner ''
+    - Gedankenstrich bleibt am vorigen Wort (Umbruch erst danach)
+    """
+    words: list[str] = []
     for w in text.split(' '):
-        if w in ('–', '—') and out:
-            out[-1] += ' ' + w
+        if w in ('–', '—') and words:
+            words[-1] += ' ' + w
         else:
-            out.append(w)
+            words.append(w)
+    out: list[tuple[str, str]] = []
+    for w in words:
+        parts, cur = [], ''
+        for k, ch in enumerate(w):
+            cur += ch
+            nxt = w[k + 1] if k + 1 < len(w) else ''
+            if ch == '-' and nxt.isalpha() and sum(c.isalpha() for c in cur.split('-')[-2]) >= 4:
+                parts.append(cur)
+                cur = ''
+        parts.append(cur)
+        out += [(p, '') for p in parts[:-1]] + [(parts[-1], ' ')]
     return out
+
+
+HYPHEN_PENALTY = 4000.0      # Umbruch am Bindestrich nur, wenn er spürbar ausgeglichener ist
 
 
 def wrap_balanced(font: Font, text: str, size: float, max_w: float, max_lines: int = 3) -> list[str]:
     """Kleinste Zeilenzahl, die passt; darin die Aufteilung mit dem gleichmäßigsten Flattersatz."""
     toks = _tokens(text)
     n = len(toks)
-    width = {}
+    cache: dict[tuple[int, int], tuple[str, float]] = {}
 
-    def w(i: int, j: int) -> float:
-        if (i, j) not in width:
-            width[(i, j)] = font.measure(' '.join(toks[i:j]), size)
-        return width[(i, j)]
+    def line(i: int, j: int) -> tuple[str, float]:
+        if (i, j) not in cache:
+            t = ''.join(p + sep for p, sep in toks[i:j - 1]) + toks[j - 1][0]
+            cache[(i, j)] = (t, font.measure(t.replace(' ', ' '), size))
+        return cache[(i, j)]
 
     for lines in range(1, max_lines + 1):
         best = None
@@ -140,24 +161,23 @@ def wrap_balanced(font: Font, text: str, size: float, max_w: float, max_lines: i
         def rec(start: int, left: int, acc: list[tuple[int, int]]):
             nonlocal best
             if left == 1:
-                if w(start, n) <= max_w:
+                if line(start, n)[1] <= max_w:
                     cand = acc + [(start, n)]
-                    widths = [w(a, b) for a, b in cand]
-                    # Letzte Zeile darf etwas kürzer sein, aber kein Hurenkind
-                    cost = sum((max_w - x) ** 2 for x in widths[:-1]) + \
-                        max(0.0, (max(widths) * 0.6 - widths[-1])) ** 2 * 4 + \
-                        (max(widths) - min(widths)) ** 2
+                    widths = [line(a, b)[1] for a, b in cand]
+                    hyph = sum(1 for a, b in cand[:-1] if toks[b - 1][1] == '')
+                    # gleichmäßige Zeilen; letzte Zeile darf kürzer sein, aber kein einzelnes Wort
+                    cost = sum((max_w - x) ** 2 for x in widths[:-1]) +                         max(0.0, (max(widths) * 0.6 - widths[-1])) ** 2 * 4 +                         (max(widths) - min(widths)) ** 2 + hyph * HYPHEN_PENALTY
                     if best is None or cost < best[0]:
                         best = (cost, cand)
                 return
             for end in range(start + 1, n - left + 2):
-                if w(start, end) > max_w:
+                if line(start, end)[1] > max_w:
                     break
                 rec(end, left - 1, acc + [(start, end)])
 
         rec(0, lines, [])
         if best:
-            return [' '.join(toks[a:b]) for a, b in best[1]]
+            return [line(a, b)[0].replace(' ', ' ') for a, b in best[1]]
     raise ValueError(f'Text passt nicht in {max_lines} Zeilen: {text}')
 
 
@@ -177,7 +197,7 @@ def icon_bbox(name: str) -> tuple[float, float, float, float]:
 
 
 # Zielgröße je Icon (geometrisches Mittel der Tintenbox) – flächige Icons etwas kleiner
-ICON_OPTICAL = {'cloud': 49, 'backup': 45, 'software': 48, 'it': 44, 'managed': 41, 'ai': 41}
+ICON_OPTICAL = {'cloud': 49, 'backup': 45, 'software': 48, 'it': 40, 'managed': 41, 'ai': 41}
 ICON_SHIFT = {'cloud': (0, 3)}   # Wolke etwas tiefer: oben Platz für die aufsteigenden Bits
 
 
@@ -201,17 +221,17 @@ def placed_icon(name: str, cx: float, cy: float, attrs: str) -> tuple[str, float
 
 # ---------------------------------------------------------------- Zusatzbewegungen je Icon
 
-def overlay(name: str, th: dict, start: float, s: float, ox: float, oy: float) -> tuple[str, str, str]:
-    """(svg_unter_dem_icon, svg_über_dem_icon, css) für die Icon-Zusatzbewegung."""
+def overlay(name: str, th: dict, start: float, s: float, ox: float, oy: float) -> tuple[str, str, str, str]:
+    """(hinter_der_kachel, zwischen_kachel_und_icon, über_dem_icon, css) für die Icon-Zusatzbewegung."""
     acc = th['accent']
-    below = above = css = ''
+    below = mid = above = css = ''
     if name == 'cloud':
         # kleine Bits steigen hinter der Wolke auf und verblassen
         bx0, by0, bx1, by1 = icon_bbox('cloud')
         top = oy + by0 * s
-        bits = [(TCX - 9, 7.0), (TCX + 4, 5.0), (TCX + 14, 6.0)]
+        bits = [(TCX - 9, 5.5), (TCX + 4, 4.5), (TCX + 14, 5.0)]
         for k, (x, sz) in enumerate(bits):
-            below += (f'<rect class="bit" x="{f(x - sz / 2)}" y="{f(top + 6)}" width="{f(sz)}" '
+            mid += (f'<rect class="bit" x="{f(x - sz / 2)}" y="{f(top + 3)}" width="{f(sz)}" '
                       f'height="{f(sz)}" rx="1.2" fill="{acc}" '
                       f'style="animation-delay:{f(start + k * 2.0 + (0.7 if k == 1 else 0))}s"/>')
         css += ('.bit{opacity:0;transform-box:fill-box;transform-origin:50% 50%;'
@@ -245,8 +265,8 @@ def overlay(name: str, th: dict, start: float, s: float, ox: float, oy: float) -
                 '@keyframes cur{0%,22%,33.3%,55%,66.6%,88%,100%{opacity:1}'
                 '27%,29%,60%,62%,93%,95%{opacity:0}}')
     elif name == 'it':
-        # gestrichelter Ring dreht sich langsam
-        r = 32.5
+        # gestrichelter Ring dreht sich langsam (Abstand zum Zahnrad unten rechts beachten)
+        r = 33.5
         c = 2 * math.pi * r
         seg = c / 20
         above += (f'<circle class="ring" cx="{f(TCX)}" cy="{f(TCY)}" r="{r}" fill="none" '
@@ -268,7 +288,8 @@ def overlay(name: str, th: dict, start: float, s: float, ox: float, oy: float) -
                 '40%,100%{opacity:0;transform:scale(1.24)}}')
     elif name == 'ai':
         # zarte Funkel-Sterne an der Kachel
-        stars = [(TILE_X + TILE - 4, TILE_Y + 4, 9.0), (TILE_X + TILE + 9, TILE_Y + 24, 5.5),
+        # zwei Sterne als Gruppe an der oberen rechten Ecke, einer unten links – Abstand zum Titel
+        stars = [(TILE_X + TILE - 4, TILE_Y + 4, 9.0), (TILE_X + TILE + 11, TILE_Y - 6, 5.5),
                  (TILE_X + 6, TILE_Y + TILE - 2, 6.5)]
         for k, (x, y, rr) in enumerate(stars):
             q = rr * 0.18
@@ -282,7 +303,7 @@ def overlay(name: str, th: dict, start: float, s: float, ox: float, oy: float) -
                 '@keyframes star{0%{opacity:0;transform:scale(0) rotate(0)}'
                 '12%{opacity:1;transform:scale(1) rotate(45deg)}'
                 '26%,100%{opacity:0;transform:scale(0) rotate(90deg)}}')
-    return below, above, css
+    return below, mid, above, css
 
 
 # ---------------------------------------------------------------- Karte
@@ -317,7 +338,7 @@ def build(i: int, spec: dict, mode: str) -> str:
 
     # ---- Icon + Zusatzbewegung
     ic, s, ox, oy = placed_icon(spec['icon'], TCX, TCY, f'fill="{th["icon"]}"')
-    below, above, css_icon = overlay(spec['icon'], th, d_icon, s, ox, oy)
+    below, mid, above, css_icon = overlay(spec['icon'], th, d_icon, s, ox, oy)
 
     # ---- Defs
     sheen_c = th['sheen']
@@ -338,7 +359,7 @@ def build(i: int, spec: dict, mode: str) -> str:
         f'<stop offset="1" stop-color="{sheen_c}" stop-opacity="0"/></linearGradient>'
         f'<pattern id="dots" width="16" height="16" patternUnits="userSpaceOnUse" x="{W - 8}" y="8">'
         f'<circle cx="0" cy="0" r="1.3" fill="{th["dots"]}"/></pattern>'
-        f'<radialGradient id="fade" cx="{W}" cy="0" r="230" gradientUnits="userSpaceOnUse">'
+        f'<radialGradient id="fade" cx="{W}" cy="0" r="200" gradientUnits="userSpaceOnUse">'
         f'<stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".45"/>'
         f'<stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'
         f'<mask id="dm"><rect x="300" width="300" height="200" fill="url(#fade)"/></mask>'
@@ -353,7 +374,7 @@ def build(i: int, spec: dict, mode: str) -> str:
         f'<g clip-path="url(#clip)">'
         f'<rect x="200" y="0" width="400" height="300" fill="url(#glow)"/>'
         f'<rect x="300" y="0" width="300" height="200" fill="url(#dots)" opacity="{th["dots_op"]}" mask="url(#dm)"/>'
-        f'<g class="sheen"><rect x="-260" y="-60" width="200" height="420" fill="url(#sh)" '
+        f'<g class="sheen"><rect x="-240" y="-60" width="170" height="420" fill="url(#sh)" '
         f'transform="skewX(-18)"/></g>'
         f'</g>'
         f'<rect x=".75" y=".75" width="{W - 1.5}" height="{H - 1.5}" rx="{R - .75}" fill="none" '
@@ -364,7 +385,7 @@ def build(i: int, spec: dict, mode: str) -> str:
         f'<rect x="{TILE_X + .75}" y="{TILE_Y + .75}" width="{TILE - 1.5}" height="{TILE - 1.5}" '
         f'rx="{TILE_R - .75}" fill="none" stroke="{th["tile_stroke"]}" stroke-opacity="{th["tile_stroke_op"]}" '
         f'stroke-width="1.5"/>'
-        f'{ic}{above}</g>'
+        f'{mid}{ic}{above}</g>'
         f'<g class="in i2">{title}</g>'
         f'<g class="in i3" fill="{th["body"]}">{body}</g>'
         f'<g class="in i4">{rule}<g fill="{th["link"]}">{link}</g>{arrow}</g>'
