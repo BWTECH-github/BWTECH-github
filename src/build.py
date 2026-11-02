@@ -12,7 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
 # Reihenfolge = Reihenfolge im README
-GENERATORS = ['hero', 'typing', 'buttons', 'cards', 'about', 'projects', 'tech', 'footer']
+GENERATORS = ['hero', 'typeline', 'buttons', 'cards', 'about', 'projects', 'tech', 'footer']
 
 
 def main() -> int:

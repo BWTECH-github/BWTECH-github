@@ -37,7 +37,7 @@ TERMS = [
     'individuelle Software',
     'IT-Komplettlösungen',
     'Managed Services',
-    'KI-Hosting in Deutschland',
+    'persönliche Beratung',
 ]
 
 # Zeitverhalten (Sekunden) – ruhig, aber nicht träge
@@ -278,6 +278,7 @@ def build(theme: str) -> tuple[str, float]:
 
 
 def main() -> None:
+    sys.stdout.reconfigure(errors='replace')   # Konsolen ohne UTF-8 nicht abbrechen lassen
     for theme in THEMES:
         svg, period = build(theme)
         p = brand.write_asset(f'typing-{theme}.svg', svg)

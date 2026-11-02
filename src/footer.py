@@ -1,4 +1,4 @@
-"""Fußzeile: ruhige Wellen, Slogan „Cloud by Design“, „bw.tech · Inhabergeführt seit 2008“.
+"""Fußzeile: ruhige Wellen, Slogan „Cloud by Design“, „bw.tech · Seit 2008 an Ihrer Seite“.
 
 Erzeugt assets/footer.svg (viewBox 1200×200, eine Variante mit eigener lila Fläche, r=24).
 
@@ -22,7 +22,7 @@ from intro_util import EASE, f, require_contrast  # noqa: E402
 from textpath import Font, GlyphDefs  # noqa: E402
 
 W, H, R = 1200, 200, 24
-SUBLINE = 'bw.tech · Inhabergeführt seit 2008'
+SUBLINE = 'bw.tech · Seit 2008 an Ihrer Seite'
 SUB_SIZE = 26
 SUB_COLOR = '#dccdf3'
 
@@ -124,13 +124,14 @@ def build() -> str:
     return brand.svg_doc(
         W, H, body,
         title='BW.Tech – Cloud by Design',
-        desc='Fußzeile mit ruhig laufenden Wellen: Cloud by Design – bw.tech, inhabergeführt seit 2008.',
+        desc='Fußzeile mit ruhig laufenden Wellen: Cloud by Design – bw.tech, seit 2008 an Ihrer Seite.',
         css=''.join(css),
         defs=grads + defs.render(),
     )
 
 
 def main() -> None:
+    sys.stdout.reconfigure(errors='replace')   # Konsolen ohne UTF-8 nicht abbrechen lassen
     svg = build()
     p = brand.write_asset('footer.svg', svg)
     print(f'{os.path.relpath(p)}  {len(svg.encode())} B')

@@ -1,13 +1,13 @@
 <p align="center">
   <a href="https://bw.tech">
-    <img src="assets/hero.svg" width="100%" alt="BW.Tech – Cloud by Design. Maßgeschneiderte Cloud-Lösungen, die Sie voranbringen. Inhabergeführt seit 2008, Rechenzentrum in Deutschland, DSGVO-konform.">
+    <img src="assets/hero.svg" width="100%" alt="BW.Tech – Cloud by Design. Maßgeschneiderte Cloud-Lösungen, die Sie voranbringen. Persönliche Beratung, Rechenzentrum in Deutschland, DSGVO-konform.">
   </a>
 </p>
 
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/typing-dark.svg">
-    <img src="assets/typing-light.svg" width="100%" alt="Wir sind Ihr Partner für Cloud by Design, Backup & Desaster Recovery, individuelle Software, IT-Komplettlösungen, Managed Services und KI-Hosting in Deutschland.">
+    <img src="assets/typing-light.svg" width="100%" alt="Wir sind Ihr Partner für Cloud by Design, Backup & Desaster Recovery, individuelle Software, IT-Komplettlösungen, Managed Services und persönliche Beratung.">
   </picture>
 </p>
 
@@ -20,7 +20,7 @@
 
 <br>
 
-**BW.Tech** ist ein inhabergeführtes Beratungs- und Softwareunternehmen – seit 2008. Wir entwickeln maßgeschneiderte Cloud-Lösungen, sichern Ihre Daten und betreiben Ihre Systeme als Managed Service im Hochverfügbarkeits-Rechenzentrum in Deutschland.
+Hinter **BW.Tech** stehen Menschen, die zuhören, ehrlich beraten und gemeinsam mit Ihnen anpacken – seit 2008. Als Beratungs- und Softwareunternehmen entwickeln wir maßgeschneiderte Cloud-Lösungen, sichern Ihre Daten und betreuen Ihre Systeme im Hochverfügbarkeits-Rechenzentrum in Deutschland. Uns ist der kollegiale Umgang auf Augenhöhe wichtig – Ihre Anforderungen stehen bei uns im Mittelpunkt.
 
 > Mit BW.Tech erhalten Sie nicht nur die Lösung, die Sie wollen – sondern die, die Sie brauchen.
 
@@ -45,7 +45,7 @@
   <a href="https://bw.tech/ueber-uns/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="assets/about-dark.svg">
-      <img src="assets/about-light.svg" width="100%" alt="Seit 2008 inhabergeführt. Wir sind ehrlich, offen und kundenorientiert. Serverstandort Deutschland, Hochverfügbarkeits-Rechenzentrum, DSGVO-konform, Beratung auf Augenhöhe.">
+      <img src="assets/about-light.svg" width="100%" alt="Seit 2008 an Ihrer Seite. Wir sind ehrlich, offen und kundenorientiert. Serverstandort Deutschland, Hochverfügbarkeits-Rechenzentrum, DSGVO-konform, Beratung auf Augenhöhe.">
     </picture>
   </a>
 </p>
@@ -68,7 +68,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/tech-dark.svg">
-    <img src="assets/tech-light.svg" width="100%" alt="Technologien: PHP, JavaScript, Vue, C++, Kotlin, Swift, C#, Python sowie WebDAV, S3, LDAP, OpenID Connect, OAuth 2.0, SAML, Zwei-Faktor-Anmeldung und KI.">
+    <img src="assets/tech-light.svg" width="100%" alt="Technologien: PHP, JavaScript, Vue, C++, Kotlin, Swift, C#, Python sowie WebDAV, S3, LDAP, OpenID Connect, OAuth 2.0, SAML, Zwei-Faktor-Anmeldung und Barrierefreiheit.">
   </picture>
 </p>
 
@@ -76,6 +76,6 @@
 
 <p align="center">
   <a href="https://bw.tech">
-    <img src="assets/footer.svg" width="100%" alt="Cloud by Design – bw.tech, inhabergeführt seit 2008">
+    <img src="assets/footer.svg" width="100%" alt="Cloud by Design – bw.tech, seit 2008 an Ihrer Seite">
   </a>
 </p>

@@ -23,19 +23,18 @@ W, H = 1200, 150
 # Android, IOS-App, Plugins, Outlook-Add-in, Bau-Blueprints)
 LANGUAGES = [
     'PHP', 'JavaScript', 'C++', 'Kotlin', 'Swift', 'Vue', 'Java', 'Objective-C',
-    'C#', 'Python', 'Gherkin', 'CMake', 'PowerShell', 'Shell',
+    'C#', 'Python', 'CMake', 'PowerShell', 'Shell',
 ]
 
 # Reihe 2 – Plattform und Standards, belegt durch Repos/READMEs:
 # dav (WebDAV/CalDAV/CardDAV), files_primary_s3/files_external_s3, user_ldap,
 # openidconnect, oauth2, shibolet (SAML 2.0), twofactor_totp, wnd (SMB/CIFS, Kerberos),
 # files_antivirus (ICAP), encryption (AES-256), audit_log (SIEM), brute_force_protection,
-# oco_mcp (Model Context Protocol), ai_documents (KI-Inferenz), WCAG 2.1 AA (README Kern)
+# Barrierefreiheit (WCAG-Arbeit am Kern)
 STANDARDS = [
     'WebDAV', 'CalDAV', 'CardDAV', 'S3 Object Storage', 'LDAP', 'OpenID Connect',
     'OAuth 2.0', 'SAML 2.0', '2FA (TOTP)', 'SMB/CIFS', 'Kerberos', 'Virenscan (ICAP)',
-    'AES-256-Verschlüsselung', 'Brute-Force-Schutz', 'Audit-Log (SIEM)', 'MCP',
-    'KI-Inferenz', 'WCAG 2.1 AA',
+    'AES-256-Verschlüsselung', 'Brute-Force-Schutz', 'Audit-Log (SIEM)', 'Barrierefreiheit',
 ]
 
 # Geometrie (viewBox-Einheiten; GitHub verkleinert ca. 0,7-fach)

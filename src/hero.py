@@ -58,7 +58,7 @@ PILL_R = 20
 PILL_PAD = 18
 PILL_GAP = 12
 PILL_Y = 316
-PILLS = ('Inhabergeführt seit 2008', 'Rechenzentrum in Deutschland', 'DSGVO-konform')
+PILLS = ('Persönliche Beratung', 'Rechenzentrum in Deutschland', 'DSGVO-konform')
 
 
 # ---------------------------------------------------------------------------
@@ -270,7 +270,7 @@ NODES = {
     'backup': ('backup', 790, 220, 30, 32),
     'software': ('software', 1054, 204, 30, 32),
     'managed': ('managed', 700, 98, 28, 29),
-    'ai': ('ai', 1120, 76, 28, 29),
+    'ai': ('it', 1120, 76, 28, 29),
 }
 LINKS = [('hub', 'backup'), ('hub', 'software'), ('hub', 'managed'), ('hub', 'ai'),
          ('managed', 'backup'), ('ai', 'software')]
@@ -455,7 +455,7 @@ def build() -> str:
         W, H, body,
         title='BW.Tech – Cloud by Design',
         desc=('Logo BW.Tech mit dem Slogan „Cloud by Design“. Maßgeschneiderte Cloud-Lösungen, '
-              'die Sie voranbringen. Inhabergeführt seit 2008 · Rechenzentrum in Deutschland · '
+              'die Sie voranbringen. Persönliche Beratung · Rechenzentrum in Deutschland · '
               'DSGVO-konform. Daneben eine stilisierte Cloud-Infrastruktur mit vernetzten Knoten.'),
         css=css,
         defs=bg_d + lo_d + il_d + defs.render(),

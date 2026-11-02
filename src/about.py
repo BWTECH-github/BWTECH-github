@@ -252,11 +252,11 @@ def counter_tile(t: dict, defs: GlyphDefs) -> tuple[str, str, str]:
         css.append(f'.ab-r{i}{{animation:ab-r{i} {dur:.2f}s {EASE} {delay:.2f}s both}}')
     out.append(f'<g mask="url(#ab-win)" fill="{t["digit"]}">{"".join(strips)}</g>')
 
-    # Akzentlinie + „inhabergeführt“
+    # Akzentlinie + „an Ihrer Seite“
     ly = base + 22
     out.append(f'<path {draw_attrs(44, 1.05)} d="M{tx} {ly}h44" '
                f'stroke="{t["tile_accent"]}" stroke-width="3" stroke-linecap="round" fill="none"/>')
-    out.append(F500.text('inhabergeführt', 26, tx, ly + 40, defs=defs,
+    out.append(F500.text('an Ihrer Seite', 26, tx, ly + 40, defs=defs,
                          attrs=f'class="ab-fade" style="--d:1.0s" fill="{t["tile_label"]}"'))
     out.append('</g>')
     return ''.join(out), ''.join(css), ''.join(d)
@@ -405,8 +405,8 @@ def build(theme: str) -> str:
     body.append(f'<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="{R}" fill="none" '
                 f'stroke="{t["panel_stroke"]}" stroke-width="1.5"/>')
 
-    title = 'Über BW.Tech – inhabergeführt seit 2008'
-    desc = ('Seit 2008 inhabergeführt. Unsere Werte: Wir sind ehrlich – auf unsere Beratung ist Verlass. '
+    title = 'Über BW.Tech – seit 2008 an Ihrer Seite'
+    desc = ('Seit 2008 an Ihrer Seite. Unsere Werte: Wir sind ehrlich – auf unsere Beratung ist Verlass. '
             'Wir sind offen – stetige Verbesserung und neue Ideen. Wir sind kundenorientiert – die beste '
             'Lösung passt genau zu Ihrem Anwendungsfall. Serverstandort Deutschland, '
             'Hochverfügbarkeits-Rechenzentrum, DSGVO-konform, Beratung auf Augenhöhe.')

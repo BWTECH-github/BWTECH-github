@@ -145,6 +145,7 @@ def build(idx: int, bid: str, label: str, icon: str, primary: bool, title: str, 
 
 
 def main() -> None:
+    sys.stdout.reconfigure(errors='replace')   # Konsolen ohne UTF-8 nicht abbrechen lassen
     for idx, (bid, label, _href, icon, primary, title) in enumerate(BUTTONS):
         for theme in THEMES:
             svg = build(idx, bid, label, icon, primary, title, theme)
