@@ -1,0 +1,81 @@
+<p align="center">
+  <a href="https://bw.tech">
+    <img src="assets/hero.svg" width="100%" alt="BW.Tech – Cloud by Design. Maßgeschneiderte Cloud-Lösungen, die Sie voranbringen. Inhabergeführt seit 2008, Rechenzentrum in Deutschland, DSGVO-konform.">
+  </a>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/typing-dark.svg">
+    <img src="assets/typing-light.svg" width="100%" alt="Wir sind Ihr Partner für Cloud by Design, Backup & Desaster Recovery, individuelle Software, IT-Komplettlösungen, Managed Services und KI-Hosting in Deutschland.">
+  </picture>
+</p>
+
+<p align="center">
+  <a href="https://bw.tech"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-website-dark.svg"><img src="assets/btn-website-light.svg" height="44" alt="Website bw.tech"></picture></a>
+  <a href="https://bw.tech/loesungen/cloud-by-design/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-loesungen-dark.svg"><img src="assets/btn-loesungen-light.svg" height="44" alt="Lösungen"></picture></a>
+  <a href="https://bw.tech/kontakt/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-kontakt-dark.svg"><img src="assets/btn-kontakt-light.svg" height="44" alt="Kontakt"></picture></a>
+  <a href="https://bw.tech/ueber-uns/#stellenAnzeigen"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/btn-karriere-dark.svg"><img src="assets/btn-karriere-light.svg" height="44" alt="Karriere"></picture></a>
+</p>
+
+<br>
+
+**BW.Tech** ist ein inhabergeführtes Beratungs- und Softwareunternehmen – seit 2008. Wir entwickeln maßgeschneiderte Cloud-Lösungen, sichern Ihre Daten und betreiben Ihre Systeme als Managed Service im Hochverfügbarkeits-Rechenzentrum in Deutschland.
+
+> Mit BW.Tech erhalten Sie nicht nur die Lösung, die Sie wollen – sondern die, die Sie brauchen.
+
+<br>
+
+## Unsere Lösungen
+
+<p align="center">
+  <a href="https://bw.tech/loesungen/cloud-by-design/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-cloud-dark.svg"><img src="assets/card-cloud-light.svg" width="49%" alt="Cloud by Design – Maßgeschneiderte Cloud-Lösungen, die sich flexibel Ihrem Bedarf anpassen."></picture></a>
+  <a href="https://bw.tech/loesungen/backup/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-backup-dark.svg"><img src="assets/card-backup-light.svg" width="49%" alt="Backup – Backup-, Restore- und Desaster-Recovery-Lösungen für jede IT-Umgebung."></picture></a>
+  <a href="https://bw.tech/loesungen/softwareentwicklung/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-software-dark.svg"><img src="assets/card-software-light.svg" width="49%" alt="Softwareentwicklung – Individuelle Software, maßgeschneidert oder auf Basis von Standardprodukten."></picture></a>
+  <a href="https://bw.tech/loesungen/it-komplettloesungen/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-it-dark.svg"><img src="assets/card-it-light.svg" width="49%" alt="IT-Komplettlösungen – Unkompliziertes Management von Kundendaten, auf Wunsch auch als Cloud-Lösung."></picture></a>
+  <a href="https://bw.tech/loesungen/ihre-sichere-cloud-managed-services-im-rechenzentrum/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-managed-dark.svg"><img src="assets/card-managed-light.svg" width="49%" alt="Managed Services – Ihre sichere Cloud im Hochverfügbarkeits-Rechenzentrum in Deutschland."></picture></a>
+  <a href="https://bw.tech/loesungen/ki-hosting/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/card-ai-dark.svg"><img src="assets/card-ai-light.svg" width="49%" alt="KI-Hosting – Leistungsstarke KI-Server für Ihr Unternehmen, DSGVO-konform, Serverstandort Deutschland."></picture></a>
+</p>
+
+<br>
+
+## Über BW.Tech
+
+<p align="center">
+  <a href="https://bw.tech/ueber-uns/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/about-dark.svg">
+      <img src="assets/about-light.svg" width="100%" alt="Seit 2008 inhabergeführt. Wir sind ehrlich, offen und kundenorientiert. Serverstandort Deutschland, Hochverfügbarkeits-Rechenzentrum, DSGVO-konform, Beratung auf Augenhöhe.">
+    </picture>
+  </a>
+</p>
+
+<br>
+
+## Projekte
+
+<p align="center">
+  <a href="https://github.com/BWTECH-github/owncloud.online"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-owncloud.online-dark.svg"><img src="assets/project-owncloud.online-light.svg" width="49%" alt="owncloud.online – Server und Plattform"></picture></a>
+  <a href="https://github.com/BWTECH-github/client"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-client-dark.svg"><img src="assets/project-client-light.svg" width="49%" alt="Desktop-Client"></picture></a>
+  <a href="https://github.com/BWTECH-github/Android"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-Android-dark.svg"><img src="assets/project-Android-light.svg" width="49%" alt="Android-App"></picture></a>
+  <a href="https://github.com/BWTECH-github/IOS-App"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/project-IOS-App-dark.svg"><img src="assets/project-IOS-App-light.svg" width="49%" alt="iOS-App"></picture></a>
+</p>
+
+<br>
+
+## Technologien
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-dark.svg">
+    <img src="assets/tech-light.svg" width="100%" alt="Technologien: PHP, JavaScript, Vue, C++, Kotlin, Swift, C#, Python sowie WebDAV, S3, LDAP, OpenID Connect, OAuth 2.0, SAML, Zwei-Faktor-Anmeldung und KI.">
+  </picture>
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://bw.tech">
+    <img src="assets/footer.svg" width="100%" alt="Cloud by Design – bw.tech, inhabergeführt seit 2008">
+  </a>
+</p>
